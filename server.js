@@ -69,6 +69,7 @@ function systemPrompt(p) {
 }
 
 const cool = {}, cache = new Map();
+let diag = [];
 let rr = 0;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function gemini(sys, history, msg) {
@@ -86,6 +87,7 @@ async function gemini(sys, history, msg) {
   MODELS.forEach(m => KEYS.forEach((_, i) => combos.push([KEYS[(rr + i) % KEYS.length], m])));
   rr++;
   let last = 'no available key';
+  diag = [];
   for (let pass = 0; pass < 2; pass++) {
     for (const [k, m] of combos) {
       const id = k.slice(-8) + m;
@@ -97,11 +99,12 @@ async function gemini(sys, history, msg) {
         });
         status = r.status;
         try { j = await r.json(); } catch (e) {}
-      } catch (e) { last = e.message; continue; }
+      } catch (e) { last = e.message; diag.push(m + ': ' + last); console.log('Gemini network error:', m, last); continue; }
       const parts = j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts;
       const t = parts ? parts.map(x => x.text || '').join('').trim() : '';
       if (t) return t;
       last = j.error ? j.error.message : 'empty reply (' + status + ')';
+      diag.push(m + ' [' + status + ']: ' + last); console.log('Gemini error:', m, status, last);
       if (status === 200) throw new Error(last);
       if (status === 429) cool[id] = Date.now() + 65000;
       else if (status === 404) cool[id] = Date.now() + 3600000;
@@ -176,6 +179,13 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { reply });
     }
 
+    if (m === 'GET' && p === '/api/health') return send(res, 200, { ok: true, keys: KEYS.length, models: MODELS });
+    if (m === 'GET' && p === '/api/ai-test') {
+      if (limited(ip)) return send(res, 429, { error: 'কিছুক্ষণ পরে আবার চেষ্টা করুন' });
+      if (!KEY_OK) return send(res, 200, { ok: false, error: 'Gemini key পাওয়া যায়নি। account.js বা Render Environment এ key দিন' });
+      try { return send(res, 200, { ok: true, reply: await gemini('Reply with one short word.', [], 'Hi') }); }
+      catch (e) { return send(res, 200, { ok: false, error: e.message, details: diag }); }
+    }
     const me = auth(req);
     if (!me) return send(res, 401, { error: 'আবার login করুন' });
 
