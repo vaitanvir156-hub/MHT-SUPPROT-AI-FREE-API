@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MHT FREE SUPPORT AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060813;--bd:rgba(255,255,255,.1);--tx:#eef0ff;--mu:#9aa3c7;--a:#7c5cff;--b:#00d4ff;--g:#22c55e;--r:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;line-height:1.55}
+button,input,textarea{font:inherit;color:inherit}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:46px 46px;animation:grid 9s linear infinite;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%)}
+@keyframes grid{to{background-position:0 46px,46px 0}}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;animation:float 14s ease-in-out infinite}
+.o1{width:380px;height:380px;background:var(--a);top:-110px;left:-90px}
+.o2{width:340px;height:340px;background:var(--b);bottom:-90px;right:-70px;animation-delay:-5s}
+.o3{width:240px;height:240px;background:#ff3d9a;top:45%;left:58%;opacity:.2;animation-delay:-9s}
+@keyframes float{50%{transform:translate(40px,-50px) scale(1.15)}}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px}
+.lg{position:relative;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;box-shadow:0 0 28px rgba(124,92,255,.55)}
+.lg:after{content:"";position:absolute;inset:-6px;border-radius:18px;border:2px solid var(--b);opacity:0;animation:ring 2.6s infinite}
+@keyframes ring{0%{transform:scale(.85);opacity:.7}100%{transform:scale(1.25);opacity:0}}
+.lg svg{width:24px;height:24px}
+.brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:.5px;background:linear-gradient(90deg,#fff,var(--b),var(--a),#fff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.me{display:none;align-items:center;gap:10px}
+.me.on{display:flex}
+.chip{padding:6px 14px;border:1px solid var(--bd);border-radius:99px;background:rgba(255,255,255,.05);font-size:14px;color:var(--mu)}
+.wrap{max-width:1100px;margin:0 auto;padding:10px 20px 60px}
+.glass{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:22px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.btn{position:relative;overflow:hidden;border:0;cursor:pointer;padding:12px 22px;border-radius:14px;font-weight:600;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;box-shadow:0 8px 26px rgba(124,92,255,.35);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,212,255,.35)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn:before{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover:before{left:130%}
+.btn.sm{padding:8px 16px;font-size:14px;border-radius:11px}
+.btn.ghost{background:rgba(255,255,255,.06);box-shadow:none;border:1px solid var(--bd)}
+.btn.del:hover{border-color:var(--r);color:#ff8a8a;box-shadow:none}
+:focus-visible{outline:2px solid var(--b);outline-offset:2px}
+#auth{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:70vh}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.2;margin-bottom:14px}
+.hero p{color:var(--mu);font-size:17px;max-width:460px}
+.hero ul{list-style:none;margin-top:22px;display:grid;gap:10px}
+.hero li{display:flex;align-items:center;gap:10px;color:#cfd5f5}
+.hero li i{width:8px;height:8px;border-radius:50%;background:var(--b);box-shadow:0 0 10px var(--b)}
+.box{padding:28px;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.tabs{display:flex;background:rgba(0,0,0,.3);border-radius:14px;padding:4px;margin-bottom:20px}
+.tabs button{flex:1;border:0;background:transparent;padding:10px;border-radius:11px;cursor:pointer;color:var(--mu);font-weight:600;transition:.25s}
+.tabs button.on{background:linear-gradient(135deg,var(--a),var(--b));color:#fff}
+label{display:block;font-size:14px;color:var(--mu);margin:14px 0 6px}
+input,textarea{width:100%;padding:12px 14px;border-radius:13px;border:1px solid var(--bd);background:rgba(0,0,0,.3);outline:0;transition:.2s}
+input:focus,textarea:focus{border-color:var(--b);box-shadow:0 0 0 3px rgba(0,212,255,.15)}
+textarea{min-height:130px;resize:vertical}
+.err{color:#ff8a8a;font-size:14px;min-height:22px;margin-top:10px}
+.full{width:100%;margin-top:6px}
+#app{display:none}
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin:14px 0 26px}
+.top h2{font-size:26px}
+.stats{display:flex;gap:10px;margin-top:8px}
+.stats span{font-size:14px;color:var(--mu)}
+.stats b{color:var(--tx);font-size:16px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{padding:20px;transition:transform .3s,border-color .3s,box-shadow .3s;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.45);box-shadow:0 18px 40px rgba(0,0,0,.4),0 0 30px rgba(124,92,255,.2)}
+.ch{display:flex;align-items:center;gap:12px}
+.ic{width:44px;height:44px;flex:none;border-radius:13px;display:grid;place-items:center;font-weight:700;font-size:19px;background:linear-gradient(135deg,rgba(124,92,255,.35),rgba(0,212,255,.25));border:1px solid var(--bd)}
+.tt{flex:1;min-width:0}
+.tt b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt span{font-size:13px;color:var(--mu)}
+.st{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--mu)}
+.st em{font-style:normal}
+.dot{width:11px;height:11px;border-radius:50%;background:var(--r);box-shadow:0 0 10px var(--r);transition:background .4s}
+.dot.on{background:var(--g);box-shadow:0 0 12px var(--g);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.75)}100%{box-shadow:0 0 0 12px rgba(34,197,94,0)}}
+.bd{margin:14px 0;color:#c5cbee;font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;gap:16px;font-size:13px;color:var(--mu);margin-bottom:14px}
+.meta b{color:var(--tx)}
+.ac{display:flex;gap:8px}
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--mu)}
+.empty svg{width:60px;height:60px;margin-bottom:12px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.modal{position:fixed;inset:0;display:none;place-items:center;padding:16px;background:rgba(3,5,14,.75);backdrop-filter:blur(6px);z-index:20;overflow-y:auto}
+.modal.open{display:grid}
+.mb{width:100%;max-width:560px;padding:26px;background:#0d1022;animation:pop .35s cubic-bezier(.2,.9,.3,1.2) both;margin:auto}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:none}}
+.mb h3{font-size:22px;margin-bottom:4px}
+.mb>p{color:var(--mu);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid var(--bd);background:rgba(255,255,255,.05);padding:7px 16px;border-radius:99px;cursor:pointer;transition:.2s}
+.chips button.on{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent}
+.kb{display:flex;gap:8px;align-items:center}
+.kb code{flex:1;min-width:0;padding:11px 13px;border-radius:12px;background:rgba(0,0,0,.4);border:1px dashed rgba(0,212,255,.5);color:var(--b);font-size:13px;overflow-x:auto;white-space:nowrap}
+pre{max-height:260px;overflow:auto;padding:14px;border-radius:12px;background:#05070f;border:1px solid var(--bd);font-size:12px;line-height:1.5;color:#cfe3ff;margin-bottom:10px}
+.steps{margin:14px 0 0 18px;color:var(--mu);font-size:14px}
+.row{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,30px);padding:12px 22px;border-radius:14px;background:#12162e;border:1px solid var(--bd);opacity:0;pointer-events:none;transition:.35s;z-index:50}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#toast.ok{border-color:var(--g)}#toast.er{border-color:var(--r)}
+@media(max-width:820px){#auth{grid-template-columns:1fr;min-height:auto;padding-top:10px}.brand{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<header>
+  <div class="logo">
+    <div class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+    <div class="brand">MHT FREE SUPPORT AI</div>
+  </div>
+  <div class="me" id="me"><span class="chip" id="meName"></span><button class="btn sm ghost" onclick="logout()">Logout</button></div>
+</header>
+
+<div class="wrap">
+  <section id="auth">
+    <div class="hero">
+      <h1>আপনার Telegram বটের জন্য ফ্রি ২৪/৭ AI সাপোর্ট</h1>
+      <p>Project বানান, নাম আর business এর বিবরণ দিন। আমরা একটি Key ও Python কোড দেব, কোড চালালেই আপনার বট কাস্টমারের প্রশ্নের উত্তর দেবে।</p>
+      <ul>
+        <li><i></i>শুধু আপনার business নিয়ে কথা বলে, বাইরের কথায় ভদ্রভাবে না করে দেয়</li>
+        <li><i></i>বট অনলাইন না অফলাইন, সবুজ ও লাল ডটে দেখা যায়</li>
+        <li><i></i>সম্পূর্ণ ফ্রি, কোনো app লাগবে না</li>
+      </ul>
+    </div>
+    <form class="glass box" onsubmit="submitAuth(event)">
+      <div class="tabs"><button type="button" id="tLogin" class="on" onclick="setMode('login')">Login</button><button type="button" id="tReg" onclick="setMode('register')">নতুন Account</button></div>
+      <label for="aUser">Username</label><input id="aUser" autocomplete="username" maxlength="20" required>
+      <label for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password" maxlength="100" required>
+      <div class="err" id="aErr"></div>
+      <button class="btn full" id="aBtn">Login করুন</button>
+    </form>
+  </section>
+
+  <section id="app">
+    <div class="top">
+      <div><h2>আমার Projects</h2><div class="stats"><span>মোট <b id="stTotal">0</b></span><span>অনলাইন <b id="stOn">0</b></span></div></div>
+      <button class="btn" onclick="openNew()">+ নতুন Project</button>
+    </div>
+    <div id="grid"></div>
+  </section>
+</div>
+
+<div class="modal" id="mNew" onclick="if(event.target===this)closeM('mNew')">
+  <form class="glass mb" onsubmit="submitNew(event)">
+    <h3>নতুন Project</h3><p>তথ্য যত ভালো দেবেন, AI তত ভালো উত্তর দেবে।</p>
+    <label>Project এর ধরন</label>
+    <div class="chips" id="types"></div>
+    <label for="pName">নাম</label><input id="pName" maxlength="60" placeholder="যেমন: Sakib Top Up Shop" required>
+    <label for="pBiz">Business কী করে, কী বিক্রি করে, নিয়ম, দাম, পেমেন্ট, সময়</label>
+    <textarea id="pBiz" maxlength="1500" placeholder="যেমন: আমরা Free Fire ডায়মন্ড টপআপ করি। bKash ও Nagad এ পেমেন্ট নেওয়া হয়। ডেলিভারি ৫-১০ মিনিট। সাপোর্ট সময় সকাল ১০টা থেকে রাত ১২টা।" required></textarea>
+    <div class="err" id="pErr"></div>
+    <div class="row"><button type="button" class="btn ghost" onclick="closeM('mNew')">বাতিল</button><button class="btn" id="pBtn">Key বানান</button></div>
+  </form>
+</div>
+
+<div class="modal" id="mKey" onclick="if(event.target===this)closeM('mKey')">
+  <div class="glass mb">
+    <h3 id="kTitle">Key ও কোড</h3><p>এই Key কাউকে দেবেন না।</p>
+    <label>Project API Key</label>
+    <div class="kb"><code id="kKey"></code><button class="btn sm" onclick="cp(cur.key)">Copy</button></div>
+    <label>Python কোড (bot.py নামে সেভ করুন)</label>
+    <pre id="kCode"></pre>
+    <button class="btn sm full" onclick="cp(pyCode(cur))">কোড Copy করুন</button>
+    <ol class="steps">
+      <li>Telegram এর @BotFather থেকে বট বানিয়ে Token নিন</li>
+      <li>Terminal এ চালান: pip install python-telegram-bot requests</li>
+      <li>কোডে BOT_TOKEN এর জায়গায় আপনার Token বসান</li>
+      <li>চালান: python bot.py (চালু হলে এখানে সবুজ ডট জ্বলবে)</li>
+    </ol>
+    <div class="row"><button class="btn ghost" onclick="closeM('mKey')">বন্ধ করুন</button></div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const API = location.protocol === 'file:' ? 'http://localhost:3000' : '';
+const TYPES = ['সাইট', 'বট', 'পেজ', 'আইডি', 'অন্যান্য'];
+let token = '', user = '', projects = [], mode = 'login', pType = TYPES[0], cur = null, timer = null;
+try { token = localStorage.getItem('mht_token') || ''; user = localStorage.getItem('mht_user') || ''; } catch (e) {}
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function toast(t, ok) {
+  const e = $('#toast'); e.textContent = t; e.className = 'show ' + (ok ? 'ok' : 'er');
+  clearTimeout(toast.t); toast.t = setTimeout(() => e.className = '', 2600);
+}
+async function api(path, opt) {
+  opt = opt || {};
+  let r, j = {};
+  try {
+    r = await fetch(API + '/api' + path, {
+      method: opt.method || 'GET',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: opt.body ? JSON.stringify(opt.body) : undefined
+    });
+  } catch (e) { throw new Error('সার্ভারের সাথে সংযোগ হচ্ছে না'); }
+  try { j = await r.json(); } catch (e) {}
+  if (r.status === 401 && token) { logout(); }
+  if (!r.ok) throw new Error(j.error || 'সমস্যা হয়েছে');
+  return j;
+}
+function setMode(m) {
+  mode = m;
+  $('#tLogin').className = m === 'login' ? 'on' : ''; $('#tReg').className = m === 'register' ? 'on' : '';
+  $('#aBtn').textContent = m === 'login' ? 'Login করুন' : 'Account বানান';
+  $('#aPass').autocomplete = m === 'login' ? 'current-password' : 'new-password';
+  $('#aErr').textContent = '';
+}
+async function submitAuth(e) {
+  e.preventDefault();
+  const b = $('#aBtn'); b.disabled = true; $('#aErr').textContent = '';
+  try {
+    const j = await api(mode === 'login' ? '/login' : '/register', { method: 'POST', body: { username: $('#aUser').value, password: $('#aPass').value } });
+    token = j.token; user = j.username;
+    try { localStorage.setItem('mht_token', token); localStorage.setItem('mht_user', user); } catch (x) {}
+    $('#aPass').value = ''; enter();
+  } catch (er) { $('#aErr').textContent = er.message; }
+  b.disabled = false;
+}
+function logout() {
+  token = ''; user = ''; projects = []; clearInterval(timer);
+  try { localStorage.removeItem('mht_token'); localStorage.removeItem('mht_user'); } catch (e) {}
+  $('#app').style.display = 'none'; $('#auth').style.display = 'grid'; $('#me').className = 'me';
+}
+function enter() {
+  $('#auth').style.display = 'none'; $('#app').style.display = 'block';
+  $('#me').className = 'me on'; $('#meName').textContent = user;
+  load(true); clearInterval(timer); timer = setInterval(() => load(false), 10000);
+}
+async function load(first) {
+  try {
+    const old = projects.map(p => p.id).join();
+    projects = (await api('/projects')).projects;
+    if (first || old !== projects.map(p => p.id).join()) render(); else updateLive();
+    stats();
+  } catch (e) { if (first) toast(e.message); }
+}
+function stats() { $('#stTotal').textContent = projects.length; $('#stOn').textContent = projects.filter(p => p.online).length; }
+function updateLive() {
+  projects.forEach(p => {
+    const d = $('#d-' + p.id); if (!d) return;
+    d.className = 'dot' + (p.online ? ' on' : '');
+    $('#s-' + p.id).textContent = p.online ? 'অনলাইন' : 'অফলাইন';
+    $('#c-' + p.id).textContent = p.today; $('#t-' + p.id).textContent = p.total;
+  });
+}
+function render() {
+  stats();
+  const g = $('#grid');
+  if (!projects.length) {
+    g.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg><p>এখনো কোনো project নেই।<br>উপরের "+ নতুন Project" চেপে প্রথমটি বানান।</p></div>';
+    return;
+  }
+  g.innerHTML = projects.map((p, i) =>
+    '<div class="card glass" style="animation-delay:' + (i * 80) + 'ms">' +
+    '<div class="ch"><div class="ic">' + esc(p.type.charAt(0)) + '</div><div class="tt"><b>' + esc(p.name) + '</b><span>' + esc(p.type) + '</span></div>' +
+    '<div class="st"><i class="dot' + (p.online ? ' on' : '') + '" id="d-' + p.id + '"></i><em id="s-' + p.id + '">' + (p.online ? 'অনলাইন' : 'অফলাইন') + '</em></div></div>' +
+    '<p class="bd">' + esc(p.business) + '</p>' +
+    '<div class="meta"><span>আজ <b id="c-' + p.id + '">' + p.today + '</b></span><span>মোট <b id="t-' + p.id + '">' + p.total + '</b></span></div>' +
+    '<div class="ac"><button class="btn sm" onclick="openKey(\'' + p.id + '\')">Key ও কোড</button><button class="btn sm ghost del" onclick="del(\'' + p.id + '\')">মুছুন</button></div></div>'
+  ).join('');
+}
+function openM(id) { $('#' + id).classList.add('open'); }
+function closeM(id) { $('#' + id).classList.remove('open'); }
+function pickType(t) {
+  pType = t;
+  document.querySelectorAll('#types button').forEach(b => b.className = b.textContent === t ? 'on' : '');
+}
+function openNew() {
+  $('#types').innerHTML = TYPES.map(t => '<button type="button" onclick="pickType(\'' + t + '\')">' + t + '</button>').join('');
+  pickType(TYPES[0]); $('#pName').value = ''; $('#pBiz').value = ''; $('#pErr').textContent = '';
+  openM('mNew'); setTimeout(() => $('#pName').focus(), 100);
+}
+async function submitNew(e) {
+  e.preventDefault();
+  const b = $('#pBtn'); b.disabled = true; $('#pErr').textContent = '';
+  try {
+    const j = await api('/projects', { method: 'POST', body: { type: pType, name: $('#pName').value, business: $('#pBiz').value } });
+    projects.unshift(j.project); render(); closeM('mNew'); toast('Project তৈরি হয়েছে', true);
+    openKey(j.project.id);
+  } catch (er) { $('#pErr').textContent = er.message; }
+  b.disabled = false;
+}
+async function del(id) {
+  if (!confirm('এই project মুছে ফেলবেন? এর Key আর কাজ করবে না।')) return;
+  try { await api('/projects/' + id, { method: 'DELETE' }); projects = projects.filter(p => p.id !== id); render(); toast('মুছে ফেলা হয়েছে', true); }
+  catch (e) { toast(e.message); }
+}
+function pyCode(p) {
+  const base = (API || location.origin) + '/api';
+  return PY.replace('__KEY__', p.key).replace('__API__', base).replace('__NAME__', JSON.stringify(p.name));
+}
+function openKey(id) {
+  cur = projects.find(p => p.id === id); if (!cur) return;
+  $('#kTitle').textContent = cur.name; $('#kKey').textContent = cur.key; $('#kCode').textContent = pyCode(cur);
+  openM('mKey');
+}
+function cp(t) {
+  const done = () => toast('Copy হয়েছে', true);
+  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(t).then(done, fb); } else fb();
+  function fb() {
+    const a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select();
+    try { document.execCommand('copy'); done(); } catch (e) { toast('Copy হয়নি, হাতে select করুন'); }
+    a.remove();
+  }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeM('mNew'); closeM('mKey'); } });
+
+const PY = `import asyncio
+import requests
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+
+BOT_TOKEN = "এখানে_আপনার_TELEGRAM_BOT_TOKEN_দিন"
+PROJECT_KEY = "__KEY__"
+API = "__API__"
+NAME = __NAME__
+
+history = {}
+
+
+def ask(chat_id, text):
+    h = history.setdefault(chat_id, [])
+    try:
+        r = requests.post(API + "/chat", json={"key": PROJECT_KEY, "message": text, "history": h[-8:]}, timeout=40)
+        reply = r.json().get("reply") or "দুঃখিত, এখন উত্তর দিতে পারছি না।"
+    except Exception:
+        reply = "দুঃখিত, এখন উত্তর দিতে পারছি না। একটু পরে চেষ্টা করুন।"
+    h.append({"role": "user", "text": text})
+    h.append({"role": "model", "text": reply})
+    del h[:-12]
+    return reply
+
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("স্বাগতম! আমি " + NAME + " এর AI সাপোর্ট। আপনার প্রশ্ন লিখুন।")
+
+
+async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not update.message or not update.message.text:
+        return
+    await context.bot.send_chat_action(update.effective_chat.id, "typing")
+    reply = await asyncio.to_thread(ask, update.effective_chat.id, update.message.text)
+    await update.message.reply_text(reply)
+
+
+def ping():
+    try:
+        requests.post(API + "/ping", json={"key": PROJECT_KEY}, timeout=10)
+    except Exception:
+        pass
+
+
+async def beat():
+    while True:
+        await asyncio.to_thread(ping)
+        await asyncio.sleep(30)
+
+
+async def post_init(app):
+    app.bot_data["beat"] = asyncio.create_task(beat())
+
+
+def main():
+    app = ApplicationBuilder().token(BOT_TOKEN).post_init(post_init).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, on_message))
+    print("Bot চালু হয়েছে...")
+    app.run_polling()
+
+
+main()
+`;
+
+if (token) enter();
+</script>
+</body>
+</html>
