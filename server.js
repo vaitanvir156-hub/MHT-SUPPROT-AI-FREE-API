@@ -91,7 +91,7 @@ async function gemini(sys, history, msg) {
   for (let pass = 0; pass < 2; pass++) {
     for (const [k, m] of combos) {
       const id = k.slice(-8) + m;
-      if (cool[id] && cool[id] > Date.now()) continue;
+      if (cool[id] && cool[id] > Date.now()) { diag.push(m + ': আগের ব্যর্থতার কারণে কিছুক্ষণ বিশ্রামে'); continue; }
       let status, j = {};
       try {
         const r = await fetch(BASE + '/v1beta/models/' + m + ':generateContent', {
@@ -107,8 +107,8 @@ async function gemini(sys, history, msg) {
       diag.push(m + ' [' + status + ']: ' + last); console.log('Gemini error:', m, status, last);
       if (status === 200) throw new Error(last);
       if (status === 429) cool[id] = Date.now() + 65000;
-      else if (status === 404) cool[id] = Date.now() + 3600000;
-      else if (status === 401 || status === 403 || /API key/i.test(last)) cool[id] = Date.now() + 600000;
+      else if (status === 404) cool[id] = Date.now() + 300000;
+      else if (status === 401 || status === 403 || /API key/i.test(last)) cool[id] = Date.now() + 120000;
       else if (status >= 500) cool[id] = Date.now() + 10000;
     }
     if (pass === 0) await sleep(2500);
@@ -183,6 +183,7 @@ const server = http.createServer(async (req, res) => {
     if (m === 'GET' && p === '/api/ai-test') {
       if (limited(ip)) return send(res, 429, { error: 'কিছুক্ষণ পরে আবার চেষ্টা করুন' });
       if (!KEY_OK) return send(res, 200, { ok: false, error: 'Gemini key পাওয়া যায়নি। account.js বা Render Environment এ key দিন' });
+      for (const c in cool) delete cool[c];
       try { return send(res, 200, { ok: true, reply: await gemini('Reply with one short word.', [], 'Hi') }); }
       catch (e) { return send(res, 200, { ok: false, error: e.message, details: diag }); }
     }
