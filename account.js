@@ -11,7 +11,7 @@
 // ============================================================
 
 module.exports = {
-  GEMINI_API_KEYS: ["PASTE_YOUR_GEMINI_API_KEY_HERE"],
+  GEMINI_API_KEYS: ["AQ.Ab8RN6Ipd8u-AYVXDPyBIJJAr2lSKwrVaTxGRld09jzPV2V5yA"],
 
   // মডেলের তালিকা। একটার ফ্রি লিমিট শেষ হলে সার্ভার নিজে পরেরটায় যায়
   GEMINI_MODELS: ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"],
